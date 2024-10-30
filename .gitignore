@@ -1,0 +1,7 @@
+__pychache__/
+*.pyc
+bin/
+include/
+lib/
+share/
+pyvenv.cfg
