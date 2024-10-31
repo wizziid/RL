@@ -28,7 +28,7 @@ class Sampler:
 
             # sample action
             obs_tensor = torch.tensor(obs, requires_grad=False, dtype=torch.float32)
-            action, log_p = self.policy.action(obs_tensor)
+            action, log_p = self.policy(obs_tensor)
             a = self.action_mapping(action)
 
             # take step

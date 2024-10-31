@@ -2,12 +2,12 @@ import torch
 import gymnasium
 from torch.optim import Adam
 
-from policies.policy import Policy
-from values.value import Value
-from sampling.sampler import Sampler
-from functions.helpers import return_2g, average_return, values, advantage
-from functions.policy_loss import advantage_weighted_log_prob
-from functions.value_loss import mc_value_loss
+from src.policies.policy import Policy
+from src.values.value import Value
+from src.sampling.sampler import Sampler
+from src.functions.helpers import return_2g, average_return, values, advantage
+from src.functions.policy_loss import advantage_weighted_log_prob
+from src.functions.value_loss import mc_value_loss
 
 
 def main():

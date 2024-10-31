@@ -56,4 +56,6 @@ class Policy(torch.nn.Module):
 
         return a, log_p_a
 
+    def __call__(self, obs):
+        return self.action(obs)
 
