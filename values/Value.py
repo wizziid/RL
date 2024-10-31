@@ -6,7 +6,7 @@ from torch.distributions import Categorical, Bernoulli, Normal
 class Value(torch.nn.Module):
 
     """
-    A basic value function class with generic structure for all other policies.
+    A basic value function class with generic structure for all other value functions.
     """
     
     def __init__(self, n_hidden, n_nodes, input_dim, output_dim=1):
@@ -28,7 +28,7 @@ class Value(torch.nn.Module):
 
 
     def forward(self, obs):
-        return self.network(obs)
+        return self.network(obs).squeeze(-1)
     
 
 

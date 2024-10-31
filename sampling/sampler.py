@@ -1,4 +1,5 @@
 import torch
+import numpy as np
 
 class Sampler:
 
@@ -26,8 +27,8 @@ class Sampler:
         while not done and not truncated:
 
             # sample action
-            obs_tensor = torch.tensor(obs, requires_grad=False)
-            action, log_p = self.policy(obs_tensor)
+            obs_tensor = torch.tensor(obs, requires_grad=False, dtype=torch.float32)
+            action, log_p = self.policy.action(obs_tensor)
             a = self.action_mapping(action)
 
             # take step
@@ -40,15 +41,15 @@ class Sampler:
             rewards.append(rew)
         
         # data formatting
-        actions_t = torch.tensor(actions)
+        actions_t = torch.tensor(np.array(actions), dtype=torch.float32)
         log_probs_t = torch.stack(log_probs)
-        observations_t = torch.tensor(observations[:-1])
-        rewards_t = torch.tensor(rewards)
+        observations_t = torch.tensor(np.array(observations[:-1]), dtype=torch.float32)
+        rewards_t = torch.tensor(np.array(rewards), dtype=torch.float32)
 
         return actions_t, log_probs_t, observations_t, rewards_t
 
 
-    def monte_carlo_sample(self, n_episodes):
+    def sample_batch(self, n_episodes):
         """
         Sample n episodes
         """
